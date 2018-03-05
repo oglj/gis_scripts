@@ -1,2 +1,2 @@
-# qgis_scripts
-A collection of Python scripts for performing odd tasks in Quantum GIS
+# gis_scripts
+A collection of Python scripts for performing odd GIS tasks
