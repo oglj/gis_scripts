@@ -1,2 +1,2 @@
 # gis_scripts
-A collection of scripts for performing odd GIS tasks
+Scripts for performing odd GIS tasks
