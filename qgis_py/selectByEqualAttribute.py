@@ -1,22 +1,36 @@
+#---Description---##############################################################
+#
+# Select features from active layer if they share an attribute value with 
+# features in reference layer
+#
+# To do: Script as function with shapefile names and attributes as arguments
+#
+#---Imports---##################################################################
 from qgis.core import *
 import processing
 
-# select features from layer 2 if they share an object id with features in layer 1
+#---Arguments---################################################################
 
-# change "layer 1" & "Layer 2" to the names of the layers in question
+# layer names
 
-layer1 = processing.getObject("Layer 1")
-layer2 = processing.getObject("Layer 2")
+activeLayerName = "Layer 1"
+refLayerName = "Layer2"
 
-layer1Features = layer1.getFeatures()
-layer2Features = layer2.getFeatures()
+# attribute names
 
-# 'OBJECTID' as default attribute for selection; can be any two attributes
+activeAttribute = "OBJECTID"
+refAttribute = "OBJECTID"
 
-layer1ID = [layer1ID.append(feature['OBJECTID']) for feature in layer1Features]
+#---Script---###################################################################
 
-for feature in layer2Features:
-    if feature['OBJECTID'] in layer1ID:
-        layer2.select(feature.id())
+refLayer = processing.getObject(refLayerName)
+activeLayer = processing.getObject(activeLayerName)
 
-#To do: Script this as a function with shapefile names and attributes as arguments
+refFeatures = refLayer.getFeatures()
+activeFeatures = activeLayer.getFeatures()
+
+refValues = [feature[refAttribute] for feature in refFeatures]
+
+for feature in activeFeatures:
+    if feature[activeAttribute] in refValues:
+        activeLayer.select(feature.id())
