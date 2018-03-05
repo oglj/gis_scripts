@@ -18,4 +18,5 @@ layer1ID = [layer1ID.append(feature['OBJECTID']) for feature in layer1Features]
 for feature in layer2Features:
     if feature['OBJECTID'] in layer1ID:
         layer2.select(feature.id())
-		
+
+#To do: Script this as a function with shapefile names and attributes as arguments
